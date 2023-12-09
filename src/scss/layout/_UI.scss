@@ -1,0 +1,93 @@
+@use 'base/variables' as v;
+
+@use 'base/mixins' as m;
+
+.contenedor-app {
+
+  // Vista tablet y +
+
+  @include m.tablet {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    min-height: 100vh;
+
+  }
+}
+
+.imagen {
+
+  // La ruta del background-image es la correcta. Lo que se me ocurre es que al compilarlo todo en el app.css dentro de build toda url se hace desde ese archivo y no los de SASS, por eso debemos salir de una carpeta (en este caso de css) entrar a img y ahi buscar la imagen
+
+  background-image: url(../img/1.jpg);
+
+  background-size: cover;
+
+  background-position: center center;
+
+  height: 30rem; 
+
+  // Vista tablet y +
+
+  @include m.tablet{
+
+    height: auto;
+
+  }
+
+}
+
+// Esta clase pertenece al div padre de .app, le agregamos el scroll aqui ya que este div toma el 100% de width, mientras que app toma el 95% y deja un espacio entre la barra de scroll y la ventana del sitio web
+
+.scroll-app {
+  @include m.tablet {
+    // Le agregamos scroll al contenido de app (junto con otro cambio en el globales.scss en el body)
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+}
+
+.app {
+
+  width: 95%;
+
+  margin: 0 auto;
+
+  padding: 3rem 0;
+
+}
+
+.barra {
+
+  // margin-bottom: 8rem;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 5rem;
+
+  .boton{
+
+    @include m.boton(v.$negro, v.$blanco);
+
+    margin: 0;
+
+  }
+
+}
+
+.barra-servicios{
+  @include m.tablet{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .boton {
+    margin: 0 0 1rem 0;
+  }
+}
